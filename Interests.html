@@ -22,7 +22,21 @@
       
       
 <style>
-  
+  .left, .right {
+  float: left;
+  width: 20%; /* The width is 20%, by default */
+}
+
+.main {
+  float: left;
+  width: 60%; /* The width is 60%, by default */
+}
+
+/* Use a media query to add a breakpoint at 800px: */
+@media screen and (max-width: 800px) {
+  .left, .main, .right 
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
 
   
   html {
@@ -96,12 +110,10 @@
 
 </head>
 <body>
-  <div class="example">
-
-  </div> 
+  
     <h1>
-        <img src="images (1).jpg" alt="Computer science">
-        <img src="HTMl.jpg" alt="Computer science">
+        <img src="com.png"Computer science">
+        <img src="computer.jpg" alt="Computer science">
     </h1>
     <h3>My interests in IT consist of programming and learning how to make websites. What fascinates me is that I have the ability to create anything I please. 
       I enjoy playing in RPG maker, getting to explore such wonders of code and how they operate. I find particular interest in creating websites. 
