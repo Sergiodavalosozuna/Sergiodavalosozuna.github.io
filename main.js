@@ -1,133 +1,100 @@
+import * as THREE from 'three';
 
-import * as THREE from './three.module.js'
 
+// Starting positons of the images from the top
+const STARTY = 0;
 
+//Create a new scene 
 const scene = new THREE.Scene();
-
-const camera = new THREE.PerspectiveCamera(
-  75, window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
+// create and position the camera
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.y = STARTY;
 
 
-//Avatar 
-const Smtexture = new THREE.TextureLoader().load('diamondblock.webp');
+camera.position.z = 30;
+// Create list of images in the 'img' folder
+let imgList = [
+    'bgd.PNG',
+    'dl.PNG',
+    'yorkt.PNG',
 
-const Sm = new THREE.Mesh(
-  new THREE.BoxGeometry(3,3,3),
-  new THREE.MeshBasicMaterial( { map: Smtexture })
-);
+]
 
-scene.add(Sm)
+// add every listed image as a plane mesh with texture to scene 
+for (const image in imgList) {
+    // every mesh has a gomentry, textur, and material
+    console.log(image)
+    const geometry = new THREE.PlaneGeometry(30, 20);
+    const texture = new THREE.TextureLoader().load('img/' + imgList[image])
+    const material = new THREE.MeshBasicMaterial({
+        color: "",
+        side: THREE.DoubleSide,
+        map: texture //  add the texture image here
+    });
+    const plane = new THREE.Mesh(geometry, material);
+    // Add the new plane to the scene 
 
-
-// Moon 
-const moonTexture = new THREE.TextureLoader().load('moon.jpg')
-const normalTexture = new THREE.TextureLoader().load('normal.jpg')
-
-const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial( {
-    map: moonTexture,
-    normalMap: normalTexture
-  })
-)
-scene.add(moon);
-
-
-const renderer = new THREE.WebGL1Renderer({
-  canvas: document.querySelector("#bg")
-});
-
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-camera.position.setZ(100);
-camera.position.setY(10)
-
-const goePog = new THREE.CylinderGeometry(41.37, 41.37, 6, 32);
-
-const texturePog = new THREE.TextureLoader().load('eevee.png');
-const matPog = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, wireframe: false, map: texturePog });
-
-const pog = new THREE.Mesh(goePog, matPog);
-
-scene.add(pog);
-
-
-
-function addStar(){
-  const goemetry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff })
-  const star = new THREE.Mesh( goemetry, material ); 
-
-  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread( 100 ) );
-
-
-  star.position.set(x, y, z); 
-  scene.add(star)
-
+    scene.add(plane);
 }
+const background = new THREE.TextureLoader().load('img/bk.jpg');
+scene.background = background;
 
-Array(200).fill().forEach(addStar)
+console.log(scene);
 
-
-const spaceTexture = new THREE.TextureLoader().load('space1.jpg');
-scene.background = spaceTexture;
-
-
-//lights 
-const pointLight = new THREE.PointLight(0xFFFFFF, 1000, 1000)
-pointLight.position.set(0, 20, 50);
-
-const ambenLight = new THREE.AmbientLight(0xFFFFFF, 0.1);
-scene.add(pointLight)
-scene.add(ambenLight);
-
-//HElpers 
-const ligherHelper = new THREE.PointLightHelper(pointLight); 
-const gridHelper = new THREE.GridHelper(200, 50); 
-
-const axesHelper = new THREE.AxesHelper(20, 20, 20);
-scene.add(ligherHelper, gridHelper, axesHelper)
-
-
-moon.position.z = 30;
-moon.position.setX(-10);
-
-// Scroll animation 
-
+// Move the camera with the scroll bar
 function moveCamera() {
+    const top = document.body.getBoundingClientRect().top;
+    camera.position.y = STARTY + top * 0.1;
+    console.log(top);
+};
 
-  const t = document.body.getBoundingClientRect().top;
-  moon.rotation.x += 0.05;
-  moon.rotation.y += 0.075;
-  moon.rotation.z += 0.05;
+// add scrollbar event to move camera
+document.body.onscroll = moveCamera;
 
-  Sm.rotation.y += 0.01;
-  Sm.rotation.z += 0.01;
+// resize the threejs canvas with the window
 
-  camera.position.z = t * -0.01;
-  camera.position.x = t * -0.0002;
-  camera.position.y = t * -0.0002;
+// add adjust for phone sizes
+
+function resizeWindow() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    //adjust for phone and desktop size
+    if (window.innerWidth <= 600) {
+        camera.position.x = 0;
+        for (const child in scene.children) {
+            scene.children[child].rotation.y = 0
+            scene.children[child].position.y = child * -50;
+        }
+    } else {
+        camera.position.x = 15;
+        for (const child in scene.children) {
+            scene.children[child].rotation.y = 15 * (Math.PI / 180);
+            scene.children[child].position.y = child * -30;
+        }
+
+    }
+
 
 }
+// resize canvase on window resize
+window.addEventListener('resize', resizeWindow, false);
 
-document.body.onscroll = moveCamera
+
+// create the renderer and attach to the canvas 
+const renderer = new THREE.WebGLRenderer(
+    { canvas: document.querySelector('#bg') }
+);
+// set initial canvas size 
+resizeWindow();
+// set renederer size and add it to the page
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
 
-function animate(time) {
-  requestAnimationFrame(animate);
-
-  //pog.rotation.y += 0.01;
-  pog.rotation.x += 0.02;
-  pog.rotation.y += 0.005;
-  pog.rotation.z += 0.01;
-
-  
-
-  renderer.render(scene, camera);
-}
-
+// animation loop (calls itself recursively)
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}//start the animation
 animate();
