@@ -36,7 +36,7 @@ for (const image in imgList) {
 
     scene.add(plane);
 }
-const background = new THREE.TextureLoader().load('img/bk.jpg');
+const background = new THREE.TextureLoader().load('img/coolbs.jfif');
 scene.background = background;
 
 console.log(scene);
