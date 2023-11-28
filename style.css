@@ -31,9 +31,8 @@ h1 {
 }
 
 .Games {
-    color: grey;
+    color: black;
     font-size: larger;
-    background-color: darkgray; 
     border-radius: 2px;
     
 }
