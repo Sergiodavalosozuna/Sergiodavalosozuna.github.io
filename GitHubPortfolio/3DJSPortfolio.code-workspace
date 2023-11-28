@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../3DJSPortfolio"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "GitHubPortfolio"
+	}
+}
