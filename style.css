@@ -4,13 +4,13 @@ canvas {
     left: 0;
     z-index: -1;
     background: fixed;
-   
+
 }
 
 body {
     font-size: 24px;
-    color: black; 
-    
+    color: black;
+
 }
 
 #content {
@@ -20,31 +20,163 @@ body {
 
 }
 
+
+
 .box {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 3px;
+    border: solid white 4px;
 
 }
 
 h1 {
-    color: #FFFFFF; 
+    color: #FFFFFF;
 }
+
+
 
 .Games {
     color: black;
     font-size: larger;
     border-radius: 2px;
-    
+
 }
 
-@media screen and (max-width: 600px){
+#intro {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
 
 
-    #content  {
+
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+#dynamic-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+:root {
+    --color-1: #186cb8;
+    --color-2: #1bd9e3;
+    --color-3: #00bbf9;
+    --color-4: #11e86e;
+    --color-5: #15e971;
+}
+
+:root {
+    --color-6: grey;
+    --color-7: #1ad0d9;
+    --color-8: rgb(30, 45, 209);
+    --color-9: #02f96dcf;
+    --color-10: #11f163e3;
+
+}
+
+.Myname {
+    color: transparent;
+    /* text-shadow: 0px 0px 0px #7474748c; */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 100px;
+    font-weight: 10;
+    text-align: center;
+    /* width: min-content; */
+    margin: auto;
+    text-transform: uppercase;
+    background: linear-gradient(220deg, var(--color-1) 19%,
+            transparent 19%, transparent 20%,
+            var(--color-2) 20%, var(--color-2) 39%,
+            transparent 39%, transparent 40%,
+            var(--color-3) 40%, var(--color-3) 59%,
+            transparent 59%, transparent 60%,
+            var(--color-4) 60%, var(--color-4) 79%,
+            transparent 79%, transparent 80%,
+            var(--color-5) 80%);
+
+    -webkit-background-clip: text;
+}
+
+
+
+.container {
+    line-height: 1;
+    display: grid;
+
+}
+
+::-webkit-scrollbar {
+    width: 30px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(120, 75%, 50% / 1);
+    border-radius: 100vw;
+    margin-block: .5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(120, 100%, 30% / 1);
+    border: .25em solid hsl(120, 75%, 50% / 1);
+    border-radius: 100vw;
+}
+
+::-webkit-scrollbar:hover {
+    background: hsl(120, 100%, 5% / 1)
+}
+
+
+@media screen and (max-width: 600px) {
+
+
+    #content {
         float: none;
         width: 100%;
     }
 }
 
+@media screen and (max-width: 400px) {
 
 
+    #content {
+        float: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+
+
+    #content {
+        float: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+
+    #content {
+        float: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+
+    #content {
+        float: none;
+        width: 100%;
+    }
+}
