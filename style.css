@@ -104,8 +104,35 @@ html {
             transparent 79%, transparent 80%,
             var(--color-5) 80%);
 
+    background-clip: text;
     -webkit-background-clip: text;
+
 }
+
+.Gitname {
+    color: transparent;
+    /* text-shadow: 0px 0px 0px #7474748c; */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    font-weight: 10;
+    text-align: center;
+    /* width: min-content; */
+    margin: auto;
+    text-transform: uppercase;
+    background: linear-gradient(220deg, var(--color-1) 19%,
+            transparent 19%, transparent 20%,
+            var(--color-2) 20%, var(--color-5) 39%,
+            transparent 39%, transparent 40%,
+            var(--color-3) 40%, var(--color-6) 59%,
+            transparent 59%, transparent 60%,
+            var(--color-4) 60%, var(--color-2) 79%,
+            transparent 79%, transparent 80%,
+            var(--color-5) 80%);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
 
 /* Custom scrollbar track */
 ::-webkit-scrollbar {

@@ -20,6 +20,7 @@ let imgList = [
     'mario.png',
     'flappybird.png',
     'Ace.png',
+    'Tiktactoe.png',
     'connect4.png'
 ];
 
@@ -50,10 +51,15 @@ for (const image in imgList) {
         var geometry = new THREE.PlaneGeometry(20, 25);// ACE Game
     }
     if (image == 7) {
-        var geometry = new THREE.PlaneGeometry(20, 25);// Connect 4 
+        var geometry = new THREE.PlaneGeometry(20, 20);// TicTacToe
     }
 
-    if (image != 0 && image != 1 && image != 2 && image != 3 && image != 4 && image != 5 && image != 6 && image != 7) {
+    if (image == 8) {
+        var geometry = new THREE.PlaneGeometry(20, 20);// Connect 4 
+    }
+
+
+    if (image != 0 && image != 1 && image != 2 && image != 3 && image != 4 && image != 5 && image != 6 && image != 7 && image != 8) {
         var geometry = new THREE.PlaneGeometry(20, 13.33);
     }
     const texture = new THREE.TextureLoader().load('img/' + imgList[image]);

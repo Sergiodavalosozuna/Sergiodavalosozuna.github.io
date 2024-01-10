@@ -52,7 +52,7 @@ body{
     left: 0;
     width: 85px;
     height: 40px;
-    background-color: #FF2E63;
+    background-color: #2eff8f;
     z-index: -1;
 }
 
@@ -74,11 +74,11 @@ body{
 }
 
 .box:hover{
-    background-color: #FF2E63;
+    background-color: #2effa4;
 }
 
 #play-again{
-    background-color: #FF2E63;
+    background-color: #2eff96;
     padding: 10px 25px;
     border: none;
     font-size: 1.2rem;
